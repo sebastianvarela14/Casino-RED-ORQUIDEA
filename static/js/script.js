@@ -98,7 +98,7 @@ floatingButtons.forEach((button) => {
             targetX =
                 window.innerWidth -
                 button.offsetWidth -
-                35;
+                25;
         }
         /*
          * Animación hacia el lateral.
