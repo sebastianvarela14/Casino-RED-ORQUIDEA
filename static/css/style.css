@@ -86,9 +86,11 @@ img {
     letter-spacing: 0.5px;
 }
 
-.logo i {
-    color: var(--gold);
-    font-size: 24px;
+.logo img {
+    width: 55px;
+    height: 55px;
+    object-fit: contain;
+    flex-shrink: 0;
 }
 
 /* NAV */
@@ -542,22 +544,11 @@ img {
     width: min(560px, 90%);
     padding: 45px 40px 40px;
     background:
-        radial-gradient(
-            circle at top right,
-            rgba(224, 184, 63, 0.22),
-            transparent 45%
-        ),
-        radial-gradient(
-            circle at bottom left,
-            rgba(201, 40, 62, 0.12),
-            transparent 40%
-        ),
         linear-gradient(
-            145deg,
-            #211d0f,
-            #11131a 55%,
-            #0b0c10
-        );
+            rgba(8, 9, 13, 0),
+            rgba(8, 9, 13, 0.20)
+        ),
+        url("../img/fondo.jpeg") center / cover no-repeat;
     border: 1px solid rgba(224, 184, 63, 0.65);
     border-radius: 20px;
     box-shadow:
@@ -1116,8 +1107,9 @@ img {
     .logo {
         font-size: 16px;
     }
-    .logo i {
-        font-size: 20px;
+    .logo img {
+        width: 20px;
+        height: 20px;
     }
     .nav {
         gap: 14px;
