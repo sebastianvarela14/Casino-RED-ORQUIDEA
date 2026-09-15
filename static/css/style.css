@@ -140,7 +140,7 @@ img {
             rgba(8, 9, 13, 0.72) 45%,
             rgba(8, 9, 13, 0.35) 100%
         ),
-        url("../img/casino.jpg");
+        url("../img/fondo.jpeg");
     background-size: cover;
     background-position: center;
 }
@@ -319,7 +319,7 @@ img {
     max-width: 1000px;
     margin: auto;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 25px;
 }
 
@@ -358,10 +358,6 @@ img {
 
 .country-card.colombia::before {
     background: var(--yellow);
-}
-
-.country-card.mexico::before {
-    background: var(--green);
 }
 
 .country-card.argentina::before {
@@ -467,26 +463,17 @@ img {
 /* =========================================================
    CAJA DE MENSAJE
 ========================================================= */
-
 .message-box {
     width: 100%;
     max-width: 650px;
-
     height: 58px;
-
     margin: 30px auto 0;
-
     display: flex;
     align-items: center;
-
     background: rgba(17, 19, 26, 0.85);
-
     border: 1px solid rgba(224, 184, 63, 0.35);
-
     border-radius: 6px;
-
     overflow: hidden;
-
     transition: 0.3s ease;
 }
 
@@ -499,20 +486,13 @@ img {
 
 .message-box input {
     flex: 1;
-
     height: 100%;
-
     padding: 0 20px;
-
     border: none;
     outline: none;
-
     background: transparent;
-
     color: var(--white);
-
     font-family: inherit;
-
     font-size: 14px;
 }
 
@@ -552,6 +532,483 @@ img {
 }
 
 /* =========================================================
+   AVISO BONUS - MODAL CENTRAL
+========================================================= */
+.bonus-banner {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: min(560px, 90%);
+    padding: 45px 40px 40px;
+    background:
+        radial-gradient(
+            circle at top right,
+            rgba(224, 184, 63, 0.22),
+            transparent 45%
+        ),
+        radial-gradient(
+            circle at bottom left,
+            rgba(201, 40, 62, 0.12),
+            transparent 40%
+        ),
+        linear-gradient(
+            145deg,
+            #211d0f,
+            #11131a 55%,
+            #0b0c10
+        );
+    border: 1px solid rgba(224, 184, 63, 0.65);
+    border-radius: 20px;
+    box-shadow:
+        0 25px 80px rgba(0, 0, 0, 0.75),
+        0 0 50px rgba(224, 184, 63, 0.12);
+    z-index: 3000;
+    text-align: center;
+    overflow: hidden;
+    animation: bonusModalAppear 0.45s ease;
+}
+
+/* =========================================================
+   FONDO OSCURO DEL MODAL
+========================================================= */
+.bonus-banner::before {
+    content: "";
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 100vw;
+    height: 100vh;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.72);
+    backdrop-filter: blur(4px);
+    z-index: -2;
+}
+
+/* =========================================================
+   BRILLO DECORATIVO
+========================================================= */
+.bonus-banner::after {
+    content: "";
+    position: absolute;
+    width: 220px;
+    height: 220px;
+    top: -110px;
+    right: -80px;
+    background: var(--gold);
+    opacity: 0.10;
+    border-radius: 50%;
+    filter: blur(10px);
+    pointer-events: none;
+}
+
+/* =========================================================
+   CONTENIDO
+========================================================= */
+.bonus-content {
+    position: relative;
+    z-index: 2;
+    padding-top: 5px;
+}
+
+/* =========================================================
+   TEXTO SUPERIOR
+========================================================= */
+.bonus-label {
+    display: inline-block;
+    padding: 7px 16px;
+    margin-bottom: 15px;
+    color: #111;
+    background:
+        linear-gradient(
+            135deg,
+            var(--gold-light),
+            var(--gold)
+        );
+    border-radius: 25px;
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    box-shadow:
+        0 0 20px rgba(224, 184, 63, 0.30);
+}
+
+/* =========================================================
+   TÍTULO
+========================================================= */
+.bonus-banner h3 {
+    margin-bottom: 30px;
+    color: var(--white);
+    font-size: 32px;
+    font-weight: 800;
+    line-height: 1.2;
+}
+
+/* =========================================================
+   OFERTAS
+========================================================= */
+.bonus-offers {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* TARJETA DE OFERTA */
+.bonus-offer {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 20px 22px;
+    min-height: 90px;
+    border-radius: 12px;
+    text-align: left;
+    color: var(--white);
+    overflow: hidden;
+    transition: 0.3s ease;
+}
+
+.bonus-offer:hover {
+    transform: translateY(-3px) scale(1.01);
+}
+
+/* Brillo que pasa */
+.bonus-offer::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255, 255, 255, 0.12),
+            transparent
+        );
+    transform: skewX(-20deg);
+    transition: 0.6s ease;
+}
+
+.bonus-offer:hover::after {
+    left: 130%;
+}
+
+/* =========================================================
+   ICONOS
+========================================================= */
+.bonus-offer i {
+    position: relative;
+    z-index: 2;
+    font-size: 38px;
+    flex-shrink: 0;
+}
+
+/* =========================================================
+   TEXTO
+========================================================= */
+.bonus-offer span {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+    line-height: 1.3;
+}
+
+.bonus-offer strong {
+    margin-bottom: 5px;
+    font-size: 34px;
+    line-height: 1;
+    font-weight: 900;
+}
+
+/* =========================================================
+   WHATSAPP
+========================================================= */
+.whatsapp-offer {
+    background:
+        linear-gradient(
+            135deg,
+            rgba(37, 211, 102, 0.22),
+            rgba(37, 211, 102, 0.06)
+        );
+    border: 1px solid rgba(37, 211, 102, 0.45);
+    box-shadow:
+        inset 0 0 25px rgba(37, 211, 102, 0.05);
+}
+
+.whatsapp-offer i {
+    color: #25d366;
+    filter:
+        drop-shadow(
+            0 0 9px rgba(37, 211, 102, 0.65)
+        );
+}
+
+/* =========================================================
+   TELEGRAM
+========================================================= */
+.telegram-offer {
+    background:
+        linear-gradient(
+            135deg,
+            rgba(34, 158, 217, 0.22),
+            rgba(34, 158, 217, 0.06)
+        );
+    border: 1px solid rgba(34, 158, 217, 0.45);
+    box-shadow:
+        inset 0 0 25px rgba(34, 158, 217, 0.05);
+}
+
+.telegram-offer i {
+    color: #229ed9;
+    filter:
+        drop-shadow(
+            0 0 9px rgba(34, 158, 217, 0.65)
+        );
+}
+
+/* =========================================================
+   ANIMACIÓN DE LAS OFERTAS
+========================================================= */
+.whatsapp-offer {
+    animation: offerPulseGreen 3s ease-in-out infinite;
+}
+
+.telegram-offer {
+    animation: offerPulseBlue 3s ease-in-out infinite;
+    animation-delay: 1.5s;
+}
+
+@keyframes offerPulseGreen {
+    0%, 100% {
+        box-shadow:
+            inset 0 0 25px rgba(37, 211, 102, 0.05);
+    }
+    50% {
+        box-shadow:
+            inset 0 0 30px rgba(37, 211, 102, 0.14),
+            0 0 18px rgba(37, 211, 102, 0.12);
+    }
+}
+
+@keyframes offerPulseBlue {
+    0%, 100% {
+        box-shadow:
+            inset 0 0 25px rgba(34, 158, 217, 0.05);
+    }
+    50% {
+        box-shadow:
+            inset 0 0 30px rgba(34, 158, 217, 0.14),
+            0 0 18px rgba(34, 158, 217, 0.12);
+    }
+}
+
+/* =========================================================
+   BOTÓN CERRAR
+========================================================= */
+.bonus-close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.30);
+    color: #999;
+    cursor: pointer;
+    font-size: 15px;
+    transition: 0.25s ease;
+    z-index: 5;
+}
+
+.bonus-close:hover {
+    background: rgba(255, 255, 255, 0.12);
+    color: var(--white);
+    transform: rotate(90deg);
+}
+
+/* =========================================================
+   ANIMACIÓN DE ENTRADA
+========================================================= */
+@keyframes bonusModalAppear {
+    from {
+        opacity: 0;
+        transform:
+            translate(-50%, -50%)
+            scale(0.85);
+    }
+    to {
+        opacity: 1;
+        transform:
+            translate(-50%, -50%)
+            scale(1);
+    }
+}
+
+/* =========================================================
+   BOTÓN REABRIR BONUS
+========================================================= */
+.bonus-reopen {
+    position: fixed;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    width: 58px;
+    height: 145px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 7px;
+    border: 1px solid rgba(224, 184, 63, 0.85);
+    border-right: none;
+    border-radius: 14px 0 0 14px;
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(224, 184, 63, 0.28),
+            transparent 65%
+        ),
+        linear-gradient(
+            180deg,
+            #2a230d,
+            #12100a
+        );
+    color: var(--gold-light);
+    cursor: pointer;
+    z-index: 2999;
+    box-shadow:
+        -5px 5px 25px rgba(0, 0, 0, 0.5),
+        -2px 0 18px rgba(224, 184, 63, 0.20);
+    transition:
+        width 0.3s ease,
+        box-shadow 0.3s ease,
+        transform 0.3s ease;
+    animation:
+        bonusReopenAppear 0.6s ease,
+        bonusAttention 2.5s ease-in-out infinite;
+    overflow: hidden;
+}
+
+.bonus-reopen::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background:
+        linear-gradient(
+            90deg,
+            var(--red),
+            var(--gold-light),
+            var(--gold),
+            var(--blue)
+        );
+}
+
+.bonus-reopen::after {
+    content: "";
+    position: absolute;
+    top: -100%;
+    left: -40%;
+    width: 45%;
+    height: 300%;
+    background: rgba(255, 255, 255, 0.18);
+    transform: rotate(20deg);
+    animation:
+        bonusShine 3.5s ease-in-out infinite;
+    pointer-events: none;
+}
+
+.bonus-reopen-icon {
+    position: relative;
+    z-index: 2;
+    font-size: 25px;
+    filter:
+        drop-shadow(
+            0 0 7px rgba(224, 184, 63, 0.8)
+        );
+    animation:
+        giftBounce 1.8s ease-in-out infinite;
+}
+
+.bonus-reopen-text {
+    position: relative;
+    z-index: 2;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    color: var(--gold-light);
+    text-shadow:
+        0 0 8px rgba(224, 184, 63, 0.5);
+}
+
+.bonus-reopen:hover {
+    width: 72px;
+    box-shadow:
+        -8px 7px 30px rgba(0, 0, 0, 0.55),
+        -3px 0 25px rgba(224, 184, 63, 0.35);
+}
+
+/* =========================================================
+   ANIMACIONES DEL BOTÓN REABRIR
+========================================================= */
+@keyframes bonusReopenAppear {
+    from {
+        opacity: 0;
+        transform:
+            translate(35px, -50%);
+    }
+    to {
+        opacity: 1;
+        transform:
+            translate(0, -50%);
+    }
+}
+
+@keyframes bonusAttention {
+    0%, 100% {
+        box-shadow:
+            -5px 5px 25px rgba(0, 0, 0, 0.5),
+            -2px 0 18px rgba(224, 184, 63, 0.20);
+    }
+    50% {
+        box-shadow:
+            -5px 5px 25px rgba(0, 0, 0, 0.5),
+            -2px 0 28px rgba(224, 184, 63, 0.50);
+    }
+}
+
+@keyframes giftBounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+@keyframes bonusShine {
+    0% {
+        left: -50%;
+    }
+    45%, 100% {
+        left: 150%;
+    }
+}
+
+/* =========================================================
     BOTONES FLOTANTES
 ========================================================= */
 
@@ -576,20 +1033,15 @@ img {
         box-shadow 0.25s ease;
 }
 
-
 /* Cuando se está arrastrando */
 
 .floating-button.dragging {
     cursor: grabbing;
-
     transition: none;
-
     transform: scale(1.08);
-
     box-shadow:
         0 12px 35px rgba(0, 0, 0, 0.55);
 }
-
 
 /* ICONO */
 
@@ -597,18 +1049,14 @@ img {
     font-size: 26px;
 }
 
-
 /* TEXTO */
 
 .floating-button span {
     display: none;
-
     font-size: 13px;
     font-weight: 700;
-
     white-space: nowrap;
 }
-
 
 /* =========================================================
    POSICIÓN INICIAL
@@ -627,18 +1075,14 @@ img {
     color: #ffffff;
 }
 
-
 /* =========================================================
    EXPANSIÓN
 ========================================================= */
 
 .floating-button.expanded {
     width: 125px;
-
     border-radius: 30px;
-
     justify-content: flex-start;
-
     padding-left: 18px;
 }
 
@@ -766,5 +1210,43 @@ img {
     }
     .floating-button.expanded {
         width: 115px;
+    }
+    /* =====================================================
+    AVISO BONUS - CELULAR
+    ===================================================== */
+    .bonus-banner {
+        width: 90%;
+        max-width: 400px;
+        padding: 38px 20px 25px;
+        border-radius: 16px;
+    }
+    .bonus-banner h3 {
+        font-size: 25px;
+        margin-bottom: 22px;
+    }
+    .bonus-label {
+        font-size: 10px;
+        padding: 6px 12px;
+    }
+    .bonus-offer {
+        min-height: 78px;
+        padding: 16px;
+        gap: 13px;
+    }
+    .bonus-offer i {
+        font-size: 30px;
+    }
+    .bonus-offer strong {
+        font-size: 28px;
+    }
+    .bonus-offer span {
+        font-size: 12px;
+    }
+    .bonus-close {
+        top: 9px;
+        right: 9px;
+        width: 30px;
+        height: 30px;
+        font-size: 13px;
     }
 }
