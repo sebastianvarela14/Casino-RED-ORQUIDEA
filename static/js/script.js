@@ -335,3 +335,209 @@ if (nameInput && sendButton) {
         }
     });
 }
+
+/* =========================================================
+   CARRUSEL DE RESEÑAS
+========================================================= */
+const reviewsTrack =
+    document.querySelector(".reviews-track");
+const reviewCards =
+    document.querySelectorAll(".review-card");
+const reviewPrev =
+    document.querySelector(".review-prev");
+const reviewNext =
+    document.querySelector(".review-next");
+const reviewDots =
+    document.querySelector(".review-dots");
+
+if (
+    reviewsTrack &&
+    reviewCards.length > 0
+) {
+    let currentReview = 0;
+    let reviewsPerPage =
+        window.innerWidth <= 650
+            ? 1
+            : window.innerWidth <= 950
+                ? 2
+                : 3;
+    /* =====================================================
+       CREAR INDICADORES
+    ===================================================== */
+    function createReviewDots() {
+        reviewDots.innerHTML = "";
+        const totalPages =
+            Math.ceil(
+                reviewCards.length /
+                reviewsPerPage
+            );
+        for (
+            let i = 0;
+            i < totalPages;
+            i++
+        ) {
+            const dot =
+                document.createElement("button");
+            dot.type = "button";
+            dot.className =
+                "review-dot";
+            if (i === 0) {
+                dot.classList.add("active");
+            }
+            dot.addEventListener(
+                "click",
+                () => {
+                    currentReview = i;
+                    updateReviews();
+                    restartReviewTimer();
+                }
+            );
+            reviewDots.appendChild(dot);
+        }
+    }
+    /* =====================================================
+       ACTUALIZAR CARRUSEL
+    ===================================================== */
+    function updateReviews() {
+        reviewsPerPage =
+            window.innerWidth <= 650
+                ? 1
+                : window.innerWidth <= 950
+                    ? 2
+                    : 3;
+        const cardWidth =
+            reviewCards[0].getBoundingClientRect().width;
+        const gap =
+            window.innerWidth <= 650
+                ? 0
+                : 22;
+        const position =
+            currentReview *
+            (cardWidth + gap) *
+            reviewsPerPage;
+        reviewsTrack.scrollTo({
+            left: position,
+            behavior: "smooth"
+        });
+        /* ACTUALIZAR PUNTOS */
+        const dots =
+            document.querySelectorAll(".review-dot");
+        dots.forEach(
+            (dot, index) => {
+                dot.classList.toggle(
+                    "active",
+                    index === currentReview
+                );
+            }
+        );
+    }
+    /* =====================================================
+       SIGUIENTE
+    ===================================================== */
+    function nextReview() {
+        const totalPages =
+            Math.ceil(
+                reviewCards.length /
+                reviewsPerPage
+            );
+        currentReview++;
+        if (
+            currentReview >= totalPages
+        ) {
+            currentReview = 0;
+        }
+        updateReviews();
+    }
+    /* =====================================================
+       ANTERIOR
+    ===================================================== */
+    function previousReview() {
+        const totalPages =
+            Math.ceil(
+                reviewCards.length /
+                reviewsPerPage
+            );
+        currentReview--;
+        if (currentReview < 0) {
+            currentReview =
+                totalPages - 1;
+        }
+        updateReviews();
+    }
+    /* =====================================================
+       BOTONES
+    ===================================================== */
+    if (reviewNext) {
+        reviewNext.addEventListener(
+            "click",
+            () => {
+                nextReview();
+                restartReviewTimer();
+            }
+        );
+    }
+    if (reviewPrev) {
+        reviewPrev.addEventListener(
+            "click",
+            () => {
+                previousReview();
+                restartReviewTimer();
+            }
+        );
+    }
+    /* =====================================================
+       CAMBIO AUTOMÁTICO
+    ===================================================== */
+    let reviewTimer;
+    function startReviewTimer() {
+        reviewTimer =
+            setInterval(
+                () => {
+                    nextReview();
+                },
+                5000
+            );
+    }
+    function restartReviewTimer() {
+        clearInterval(reviewTimer);
+        startReviewTimer();
+    }
+    /* =====================================================
+       PAUSAR AL PASAR EL MOUSE
+    ===================================================== */
+    reviewsTrack.addEventListener(
+        "mouseenter",
+        () => {
+            clearInterval(reviewTimer);
+        }
+    );
+    reviewsTrack.addEventListener(
+        "mouseleave",
+        () => {
+            startReviewTimer();
+        }
+    );
+    /* =====================================================
+       ACTUALIZAR AL CAMBIAR TAMAÑO
+    ===================================================== */
+    window.addEventListener(
+        "resize",
+        () => {
+            reviewsPerPage =
+                window.innerWidth <= 650
+                    ? 1
+                    : window.innerWidth <= 950
+                        ? 2
+                        : 3;
+            currentReview = 0;
+            createReviewDots();
+            updateReviews();
+        }
+    );
+    /* =====================================================
+       INICIALIZAR
+    ===================================================== */
+    createReviewDots();
+    updateReviews();
+    startReviewTimer();
+}
