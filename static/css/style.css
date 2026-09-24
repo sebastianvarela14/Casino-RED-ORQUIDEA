@@ -1941,7 +1941,7 @@ img {
         height: 280px;
     }
     .ganaencasa-card img {
-        width: 85%;
+        width: 80%;
     }
     /* PAÍSES */
     .countries {
@@ -2087,7 +2087,44 @@ img {
         flex-direction: column;
         align-items: center;
     }
+    .footer-social h3 {
+        margin-bottom: 18px;
+        color: #ffffff;
+        font-size: 14px;
+        font-weight: 700;
+    }
     .social-links {
+        display: flex;
+        align-items: center;
         justify-content: center;
+        gap: 12px;
+    }
+    .social-links a {
+        width: 42px;
+        height: 42px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid rgba(224, 184, 63, 0.20);
+        border-radius: 50%;
+        background: rgba(224, 184, 63, 0.05);
+        color: #f5d76e;
+        font-size: 17px;
+        flex-shrink: 0;
+    }
+    .social-links a i {
+        display: block;
+        color: inherit;
+        font-size: 17px;
+    }
+    .footer-responsible {
+        width: 100%;
+        margin-top: 40px;
+    }
+    .footer-bottom {
+        width: 100%;
+        flex-direction: column;
+        gap: 7px;
+        text-align: center;
     }
 }
