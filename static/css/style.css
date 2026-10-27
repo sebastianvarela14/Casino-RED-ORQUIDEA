@@ -1903,9 +1903,9 @@ img {
     /* HERO */
     .hero {
         min-height: 90vh;
-        background-position: center;
-        background-size: auto 100%;
-        background-repeat: no-repeat;
+        background-size: 100% auto !important;
+        background-position: center top !important;
+        background-repeat: no-repeat !important;
         background-color: #08090d;
     }
     .hero-content {
