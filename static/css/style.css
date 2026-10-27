@@ -1902,12 +1902,8 @@ img {
     }
     /* HERO */
     .hero {
-        min-height: 0;
-        height: 55vw;
-        background-size: 100% auto !important;
-        background-position: center top !important;
-        background-repeat: no-repeat !important;
-        background-color: #08090d;
+        min-height: 50vh;
+        background-position: center;
     }
     .hero-content {
         width: 92%;
