@@ -236,7 +236,7 @@ if (whatsappOffer) {
         (event) => {
             event.preventDefault();
             abrirWhatsApp(
-                "Hola, estoy interesado en el bonus de bienvenida del 25%."
+                "Hola, estoy interesado en el bonus de bienvenida del 15%."
             );
         }
     );
